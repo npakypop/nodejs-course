@@ -11,16 +11,12 @@ const router = express.Router();
 
 router.get("/", controllers.getAllContacts);
 
-router.get("/:contactId", controllers.getContactById);
+router.get("/:id", controllers.getContactById);
 
 router.post("/", validateBody(schemas.addSchema), controllers.addContact); // * тут выполняется проверка и валидация с помощью декоратора и схемы валидации. Если будет ошибка то она прокинется с помощью некст в обработчик ошибок если нет то передаст управление дальше тоесть контроллеру запроса(). Мидлвары это все что между адресом и контроллером, контроллер это уже финальная функция
 
-router.put(
-  "/:contactId",
-  validateBody(schemas.addSchema),
-  controllers.updateContact
-); // * поскольку этот запрос обновляет абсолютно весь объект, от в тело запроса надо передавать все поля и те которые я хочу обновить и те которые остануться без обновления
+router.put("/:id", validateBody(schemas.addSchema), controllers.updateContact); // * поскольку этот запрос обновляет абсолютно весь объект, от в тело запроса надо передавать все поля и те которые я хочу обновить и те которые остануться без обновления
 
-router.delete("/:contactId", controllers.deleteContact);
+router.delete("/:id", controllers.deleteContact);
 
 module.exports = router;
