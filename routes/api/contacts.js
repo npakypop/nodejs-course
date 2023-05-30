@@ -22,10 +22,10 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:contactId", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
-    const { contactId } = req.params; //! параметры запроса
-    const result = await contacts.getContactById(contactId);
+    const { id } = req.params; //! параметры запроса
+    const result = await contacts.getContactById(id);
     if (!result) {
       throw HttpError(404, "Not found уищищ"); //! эта функция которая выполоняет код в 3 строках ниже
       // const error = new Error("Not found");
@@ -58,14 +58,14 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.put("/:contactId", async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   try {
     const { error } = addSchema.validate(req.body); //! валидация тела запроса
     if (error) {
       //! перед тем как обновить контакт проверяем есть ли ошибка после валидации
       throw HttpError(400, error.message);
     }
-    const result = await contacts.updateContact(req.params.contactId, req.body);
+    const result = await contacts.updateContact(req.params.id, req.body);
     if (!result) {
       throw HttpError(404, "Not found");
     }
@@ -75,10 +75,10 @@ router.put("/:contactId", async (req, res, next) => {
   }
 }); //! поскольку этот запрос обновляет абсолютно весь объект, от в тело запроса надо передавать все поля и те которые я хочу обновить и те которые остануться без обновления
 
-router.delete("/:contactId", async (req, res, next) => {
+router.delete("/:id", async (req, res, next) => {
   try {
-    const { contactId } = req.params;
-    const result = await contacts.removeContact(contactId);
+    const { id } = req.params;
+    const result = await contacts.removeContact(id);
     if (!result) {
       throw HttpError(404, "Not found");
     }
