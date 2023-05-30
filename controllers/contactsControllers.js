@@ -3,16 +3,16 @@ const { HttpError, ctrlWrapper } = require("../helpers");
 
 const getAllContacts = async (req, res) => {
   const result = await contacts.listContacts();
-  res.json(result);
+  res.status(200).json(result);
 };
 
 const getContactById = async (req, res) => {
   const { contactId } = req.params; // * параметры запроса
   const result = await contacts.getContactById(contactId);
   if (!result) {
-    throw HttpError(404, "Not found уищищ"); // * эта функция которая выполоняет код в 3 строках ниже
+    throw HttpError(404, "Not found"); // * эта функция которая выполоняет код в 3 строках ниже
   }
-  res.json(result);
+  res.status(200).json(result);
 };
 
 const addContact = async (req, res) => {
@@ -25,6 +25,9 @@ const updateContact = async (req, res) => {
   if (!result) {
     throw HttpError(404, "Not found");
   }
+  // else if (!req.body) {
+  //   throw HttpError(400, "missing fields");
+  // }
   res.json(result);
 };
 
@@ -36,8 +39,8 @@ const deleteContact = async (req, res) => {
   }
   // *  что возвращать после удаления зависит от ситуации и поставленой задачи, ниже два варианта либо сообщение об удасном удалении  либо обьект который удалили
   // ?   ================== 1 вариант
-  res.json({
-    message: "Delete success",
+  res.status(200).json({
+    message: "contact deleted",
   });
 };
 
