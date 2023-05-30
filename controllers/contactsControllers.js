@@ -1,4 +1,4 @@
-const contacts = require("../models/contacts"); // * от сюда достаем функции запросов и вставляем их в обработчики маршутов
+const contacts = require("../models/contactsRequests"); // * от сюда достаем функции запросов и вставляем их в обработчики маршутов
 const { HttpError, ctrlWrapper } = require("../helpers");
 
 const getAllContacts = async (req, res) => {

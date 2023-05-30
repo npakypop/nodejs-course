@@ -1,6 +1,6 @@
 const express = require("express");
 
-const controllers = require("../../controllers/contacts");
+const controllers = require("../../controllers/contactsControllers");
 
 const { validateBody } = require("../../middlewars");
 

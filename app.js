@@ -2,7 +2,7 @@ const express = require("express");
 const logger = require("morgan"); // * надо что бы дебажить код
 const cors = require("cors");
 
-const contactsRouter = require("./routes/api/contacts"); // * тут находятся маршруты для работ с контактами
+const contactsRouter = require("./routes/api/contactsRoutes"); // * тут находятся маршруты для работ с контактами
 
 const app = express();
 
