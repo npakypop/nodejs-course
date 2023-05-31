@@ -1,6 +1,9 @@
 const express = require("express");
 const logger = require("morgan"); // * надо что бы дебажить код
 const cors = require("cors");
+// const dotenv = require("dotenv");
+// dotenv.config();//* елси переменная dotenv не нужна то можно импортировать как ниже
+require("dotenv").config();
 
 const contactsRouter = require("./routes/api/contactsRoutes"); // * тут находятся маршруты для работ с контактами
 
