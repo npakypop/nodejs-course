@@ -32,7 +32,11 @@ const addSchema = Joi.object({
   favorite: Joi.boolean(),
 }); //* обе схемы валидации джои и монгус хранить лучше в одном файле, что бы изменении одной и в случае добавления полей или правил не забыть поменяь эти правила и вдругой схеме.
 
-const schemas = { addSchema };
+const updateFavoriteSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
+
+const schemas = { addSchema, updateFavoriteSchema };
 
 const Contact = model("contact", contactSchema); //* создание модели(класс который будет работать с коллекцией). В базе данных название коллекции должно быть обязательно во вмножественном числе.
 
