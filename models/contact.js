@@ -26,9 +26,15 @@ const contactSchema = new Schema(
 contactSchema.post("save", handleMongooseError); //* методы монгуса выбрасывают ошибку без статуса, а если не будет статуса то обработчик ошибок присвоит статус 500 по умолчанию, хотя ошибка валидации это 400, поэтому создается мидлвара которая будет запускаться если случилась ошибка при добавление. Этот код означает что когда при сохранении обьекта случилась ошибка то значит надо вызвать мидлвар handleMongooseError
 
 const addSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
+  name: Joi.string().required().messages({
+    "any.required": "missing required name field",
+  }),
+  email: Joi.string().required().messages({
+    "any.required": "missing required email field",
+  }),
+  phone: Joi.string().required().messages({
+    "any.required": "missing required phone field",
+  }),
   favorite: Joi.boolean(),
 }); //* обе схемы валидации джои и монгус хранить лучше в одном файле, что бы изменении одной и в случае добавления полей или правил не забыть поменяь эти правила и вдругой схеме.
 
